@@ -5,7 +5,7 @@ const guessesEl = document.querySelector('#guesses');
 
 
 puzzleEl.textContent = game1.getPuzzle();
-guessesEl.textContent = game1.remainingGuesses;
+guessesEl.textContent = game1.getStatusMessage();
 
 
 
@@ -14,7 +14,7 @@ window.addEventListener('keypress', function(event){
     const guess = String.fromCharCode(event.charCode);
     game1.makeGuess(guess);
     puzzleEl.textContent = game1.getPuzzle();
-    guessesEl.textContent = game1.remainingGuesses;
+    guessesEl.textContent = game1.getStatusMessage();
     game1.calculateStatus();
     console.log(game1.status);
 });
