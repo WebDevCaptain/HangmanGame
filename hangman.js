@@ -1,7 +1,7 @@
 const Hangman = function(word, remainingGuesses){
     this.word = word.toLowerCase().split('');
     this.remainingGuesses = remainingGuesses;
-    this.guessedLetters = ['e', 'o'];
+    this.guessedLetters = [];
 }
 
 
@@ -19,8 +19,27 @@ Hangman.prototype.getPuzzle = function(){
 }
 
 
-const h2 = new Hangman('HellO World', 5);
-console.log(h2.getPuzzle());
+Hangman.prototype.makeGuess = function(guess){
+    guess = guess.toLowerCase();
+    if(!this.guessedLetters.includes(guess)){
+        this.guessedLetters.push(guess);
+        
+        if(!this.word.includes(guess)){
+            this.remainingGuesses--;
+        }
+    }
+}
 
 
+const game1 = new Hangman('shreyash thakur', 4);
+console.log(game1.getPuzzle());
+console.log(game1.remainingGuesses);
+
+
+window.addEventListener('keypress', function(event){
+    const guess = String.fromCharCode(event.charCode);
+    game1.makeGuess(guess);
+    console.log(game1.getPuzzle());
+    console.log(game1.remainingGuesses);
+});
 
