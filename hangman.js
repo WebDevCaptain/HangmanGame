@@ -31,15 +31,4 @@ Hangman.prototype.makeGuess = function(guess){
 }
 
 
-const game1 = new Hangman('shreyash thakur', 4);
-console.log(game1.getPuzzle());
-console.log(game1.remainingGuesses);
-
-
-window.addEventListener('keypress', function(event){
-    const guess = String.fromCharCode(event.charCode);
-    game1.makeGuess(guess);
-    console.log(game1.getPuzzle());
-    console.log(game1.remainingGuesses);
-});
 
