@@ -2,6 +2,7 @@ const Hangman = function(word, remainingGuesses){
     this.word = word.toLowerCase().split('');
     this.remainingGuesses = remainingGuesses;
     this.guessedLetters = [];
+    this.status = 'playing';
 }
 
 
@@ -19,6 +20,20 @@ Hangman.prototype.getPuzzle = function(){
 }
 
 
+Hangman.prototype.calculateStatus = function(){
+    const gameCompleted = this.word.join('') === this.getPuzzle();
+    if(this.remainingGuesses === 0 && !gameCompleted){
+        this.status = 'failed';
+    }
+    else if(this.remainingGuesses !== 0 && gameCompleted){
+        this.status = 'finished';
+    }
+    else{
+        this.status = 'playing';
+    }
+}
+
+
 Hangman.prototype.makeGuess = function(guess){
     guess = guess.toLowerCase();
     if(!this.guessedLetters.includes(guess)){
@@ -28,7 +43,9 @@ Hangman.prototype.makeGuess = function(guess){
             this.remainingGuesses--;
         }
     }
+    this.calculateStatus();
 }
+
 
 
 
