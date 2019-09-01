@@ -1,4 +1,4 @@
-const getPuzzle = (callback) => {
+const getPuzzle = (wordCount, callback) => {
     const request = new XMLHttpRequest();
 
     request.addEventListener('readystatechange', (e) => {
@@ -12,6 +12,6 @@ const getPuzzle = (callback) => {
         }        
     });
 
-    request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=3');
+    request.open('GET', `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
     request.send();
 }
