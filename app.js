@@ -1,24 +1,34 @@
-const game1 = new Hangman('shreyash thakur', 4);
-
+let game;
 const puzzleEl = document.querySelector('#puzzle');
 const guessesEl = document.querySelector('#guesses');
+const resetEl = document.querySelector('#reset');
 
-puzzleEl.textContent = game1.puzzle;
-guessesEl.textContent = game1.statusMessage;
+const startGame = async () => {
+    const puzzle = await getPuzzle(4);
+    game = new Hangman(puzzle, 5);
+    render();
+}
 
-getPuzzle(4).then((puzzle) => {
-    console.log(puzzle);
-}).catch((error) => {
-    console.log(error);
-});
+const render = () => {
+    puzzleEl.textContent = game.puzzle;
+    guessesEl.textContent = game.statusMessage;
+}
 
+resetEl.addEventListener('click', startGame);
+
+
+startGame();
 
 
 window.addEventListener('keypress', function(event){
     const guess = String.fromCharCode(event.charCode);
-    game1.makeGuess(guess);
-    puzzleEl.textContent = game1.puzzle;
-    guessesEl.textContent = game1.statusMessage;
-    game1.calculateStatus();
-    console.log(game1.status);
+    game.makeGuess(guess);
+    render();
+    game.calculateStatus();
+    console.log(game.status);
 });
+
+
+
+
+
