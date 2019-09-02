@@ -6,14 +6,11 @@ const guessesEl = document.querySelector('#guesses');
 puzzleEl.textContent = game1.puzzle;
 guessesEl.textContent = game1.statusMessage;
 
-getPuzzle(7, (error, puzzle) => {
-    if(error){
-        console.log("An error occured while fetching the puzzle, ", error);
-    }
-    else{
-        console.log(puzzle);
-    }
-});
+getPuzzle(7).then((data) => {
+    console.log(data);
+}, (error) => {
+    console.log(error);
+})
 
 
 
