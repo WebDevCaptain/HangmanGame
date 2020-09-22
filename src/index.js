@@ -25,19 +25,11 @@ const render = () => {
 
 resetEl.addEventListener('click', startGame);
 
-
 startGame();
 
-
-window.addEventListener('keypress', function(event){
+window.addEventListener('keypress', function (event) {
     const guess = String.fromCharCode(event.charCode);
     game.makeGuess(guess);
     render();
     game.calculateStatus();
-    console.log(game.status);
 });
-
-
-
-
-

@@ -47,6 +47,7 @@ class Hangman {
     makeGuess(guess){
         if(this.status !== 'playing') return;
         guess = guess.toLowerCase();
+        
         if(!this.guessedLetters.includes(guess)){
             this.guessedLetters.push(guess);
             
